@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:thefirstlineofcode="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.thefirstlineofcode.april.admin</groupId>
+		<artifactId>april-admin-examples</artifactId>
+		<version>1.0.0-ALPHA1</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>	
+	
+	<groupId>com.thefirstlineofcode.april.admin.examples</groupId>
+	<artifactId>april-admin-examples-application</artifactId>
+	<name>April admin examples application</name>
+	
+	<properties>
+		<start-class>com.thefirstlineofcode.april.admin.examples.application.ExamplesApplication</start-class>
+	</properties>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+			<dependency>
+				<groupId>com.thefirstlineofcode.april.admin</groupId>
+				<artifactId>april-admin-framework</artifactId>
+			</dependency>
+	</dependencies>
+</project>
+

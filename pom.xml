@@ -1,0 +1,170 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:thefirstlineofcode="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+		
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.16</version>
+	</parent>
+
+	<groupId>com.thefirstlineofcode.april</groupId>
+	<artifactId>april-admin</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-ALPHA1</version>
+	<name>April Admin</name>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>11</java.version>
+	</properties>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<release>1.8</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.15</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<classpathContainers>
+						<classpathContainer>
+							org.eclipse.jdt.launching.JRE_CONTAINER
+						</classpathContainer>
+					</classpathContainers>
+					<additionalConfig>
+						<file>
+							<name>.settings/org.eclipse.core.resources.prefs</name>
+							<content>
+								<![CDATA[encoding/<project>=${project.build.sourceEncoding}
+									eclipse.preferences.version=1
+								]]>
+							</content>
+						</file>
+					</additionalConfig>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>framework</module>
+		<module>plugins</module>
+		<module>examples</module>
+	</modules>
+	
+	<pluginRepositories>
+		<pluginRepository>
+                        <id>jcenter</id>
+                        <name>JCenter Repository</name>
+                        <url>https://jcenter.bintray.com/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Central Repository</name>
+			<url>https://repo1.maven.org/maven2</url>
+		</pluginRepository> 
+	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>com.thefirstlineofcode.releases</id>
+			<name>TheFirstLineOfCode Repository - Releases</name>
+			<url>http://120.25.166.188:9090/repository/maven-releases/</url>
+		</repository>
+		<repository>
+                        <id>jcenter</id>
+                        <name>JCenter Repository</name>
+                        <url>https://jcenter.bintray.com/</url>
+                </repository>
+                <repository>
+                        <id>central</id>
+                        <name>Central Repository</name>
+                        <url>https://repo1.maven.org/maven2</url>
+                </repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- third party libraries -->
+			<dependency>
+				<groupId>org.pf4j</groupId>
+				<artifactId>pf4j</artifactId>
+				<version>3.6.0</version>
+			</dependency>
+			<dependency>
+        			<groupId>io.swagger</groupId>
+        			<artifactId>swagger-annotations</artifactId>
+        			<version>1.5.18</version>
+      			</dependency>
+			<dependency>
+        			<groupId>io.springfox</groupId>
+        			<artifactId>springfox-swagger2</artifactId>
+        			<version>2.8.0</version>
+      			</dependency>
+			<dependency>
+        			<groupId>io.springfox</groupId>
+        			<artifactId>springfox-swagger-ui</artifactId>
+        			<version>2.8.0</version>
+      			</dependency>
+			<!-- April libraries -->
+			<dependency>
+				<groupId>com.thefirstlineofcode.april</groupId>
+				<artifactId>april-boot</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thefirstlineofcode.april.admin</groupId>
+				<artifactId>april-admin-framework</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thefirstlineofcode.april.admin.plugins</groupId>
+				<artifactId>april-admin-plugins-react-admin</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thefirstlineofcode.april.admin.examples.plugins</groupId>
+				<artifactId>april-admin-examples-plugins-data-accessor</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<distributionManagement>
+		<repository>
+			<id>com.thefirstlineofcode.releases</id>
+			<name>thefirstlineofcode Repository - Releases</name>
+			<url>http://120.25.166.188:9090/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
+</project>
+

@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:thefirstlineofcode="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.thefirstlineofcode.april.admin</groupId>
+		<artifactId>april-admin-examples</artifactId>
+		<version>1.0.0-ALPHA1</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>	
+	
+	<groupId>com.thefirstlineofcode.april.admin.examples</groupId>
+	<artifactId>april-admin-examples-plugins</artifactId>
+	<packaging>pom</packaging>
+	<name>April admin examples plugins</name>
+	
+	<modules>
+		<module>configuration-properties</module>
+		<module>data-accessor</module>
+		<module>about</module>
+		<module>test-data</module>
+		<module>crud</module>
+	</modules>
+</project>
+
