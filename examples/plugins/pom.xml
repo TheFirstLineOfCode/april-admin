@@ -16,7 +16,6 @@
 	<name>April admin examples plugins</name>
 	
 	<modules>
-		<module>configuration-properties</module>
 		<module>data-accessor</module>
 		<module>about</module>
 		<module>test-data</module>

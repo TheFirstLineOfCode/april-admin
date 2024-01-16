@@ -15,7 +15,7 @@ import polyglotI18nProvider from 'ra-i18n-polyglot'
 import en from './ca-language-english';
 import cn from './ca-language-chinese';
 import chineseMessages from './ca-language-chinese'
-import authProvider from './crystalAuthProvider'
+import authProvider from './aprilAuthProvider'
 import {customizeDataProvider} from './application.tsx'
 
 const i18nProvider = polyglotI18nProvider(
@@ -148,7 +148,7 @@ function getResourceConfigurations(resources, applicationViews) {
 	return resourceConfigurations;
 }
 
-export const CrystalAdmin = ({configuration, applicationViews}) => {
+export const AprilAdmin = ({configuration, applicationViews}) => {
 	customizeDataProvider(configuration.dataProvider);
 	
 	const resourceConfigurations = getResourceConfigurations(configuration.resources, applicationViews);
@@ -156,7 +156,7 @@ export const CrystalAdmin = ({configuration, applicationViews}) => {
 	const LoginPage = applicationViews.get('LoginPage');
 	
 	return (
-		<Admin loginPage={LoginPage} layout={CrystalLayout} dataProvider={configuration.dataProvider} authProvider={authProvider} i18nProvider={i18nProvider}>
+		<Admin loginPage={LoginPage} layout={AprilLayout} dataProvider={configuration.dataProvider} authProvider={authProvider} i18nProvider={i18nProvider}>
 			{
 				resourceConfigurations.map(resourceConfiguration => (
 				<Resource
@@ -174,7 +174,7 @@ export const CrystalAdmin = ({configuration, applicationViews}) => {
 	);
 }
 
-export const CrystalLayout = (props) => {
+export const AprilLayout = (props) => {
 	return (<Layout {...props} menu={TreeMenu} />);
 }
 
