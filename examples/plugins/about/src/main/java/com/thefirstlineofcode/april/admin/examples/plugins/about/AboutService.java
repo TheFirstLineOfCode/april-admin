@@ -2,11 +2,11 @@ package com.thefirstlineofcode.april.admin.examples.plugins.about;
 
 import org.springframework.stereotype.Service;
 
-import com.thefirstlineofcode.april.boot.config.IConfigurationProperties;
-import com.thefirstlineofcode.april.boot.config.IConfigurationPropertiesAware;
+import com.thefirstlineofcode.april.boot.config.IPluginProperties;
+import com.thefirstlineofcode.april.boot.config.IPluginPropertiesAware;
 
 @Service
-public class AboutService implements IConfigurationPropertiesAware {
+public class AboutService implements IPluginPropertiesAware {
 	private About about;
 	
 	public About getAbout() {
@@ -14,7 +14,7 @@ public class AboutService implements IConfigurationPropertiesAware {
 	}
 	
 	@Override
-	public void setConfigurationProperties(IConfigurationProperties properties) {
+	public void setPluginProperties(IPluginProperties properties) {
 		about = new About();
 		
 		about.setApplicationName(properties.getString("applicationName", "Unknown application"));

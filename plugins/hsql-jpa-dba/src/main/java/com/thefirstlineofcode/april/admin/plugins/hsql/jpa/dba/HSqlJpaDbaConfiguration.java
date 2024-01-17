@@ -26,14 +26,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.thefirstlineofcode.april.boot.ISpringConfiguration;
-import com.thefirstlineofcode.april.boot.config.IConfigurationProperties;
-import com.thefirstlineofcode.april.boot.config.IConfigurationPropertiesAware;
+import com.thefirstlineofcode.april.boot.config.IPluginProperties;
+import com.thefirstlineofcode.april.boot.config.IPluginPropertiesAware;
 
 @Extension
 @Configuration
 @EnableTransactionManagement
-public class HSqlJpaDbaConfiguration implements ISpringConfiguration,
-			IConfigurationPropertiesAware, ApplicationContextAware {
+public class HSqlJpaDbaConfiguration implements ISpringConfiguration, IPluginPropertiesAware,
+			ApplicationContextAware {
 	private static final String PACKAGE_NAME_APRIL_FRAMEWORK = "com.thefirstlineofcode.april.framework";
 
 	private static final int DEFAULT_HSQL_PORT = 9001;
@@ -118,7 +118,7 @@ public class HSqlJpaDbaConfiguration implements ISpringConfiguration,
 	}
 	
 	@Override
-	public void setConfigurationProperties(IConfigurationProperties properties) {
+	public void setPluginProperties(IPluginProperties properties) {
 		hSqlPort = properties.getInteger("hSqlPort", DEFAULT_HSQL_PORT);
 	}
 	
