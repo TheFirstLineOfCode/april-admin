@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import Button from '@mui/material/Button';
 import {fetchUtils, useTranslate, Title} from 'react-admin'
 import {useDataProvider, useNotify} from 'react-admin';
-import {notifyFetchError} from './crystalAdmin'
+import {notifyFetchError} from './aprilAdmin'
 
 const TOTALS_NOT_FETCHED = -1;
 const TOTALS_FETCHED = -2;

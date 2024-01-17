@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {fetchUtils, useTranslate, useNotify, Title} from 'react-admin'
-import {notifyFetchError} from './crystalAdmin'
+import {notifyFetchError} from './aprilAdmin'
 
 const AboutDialog = ({showDialog, onClose}) => {
 	const translate = useTranslate();
