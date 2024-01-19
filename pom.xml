@@ -78,6 +78,7 @@
 	<modules>
 		<module>framework</module>
 		<module>plugins</module>
+		<module>builder</module>
 		<module>examples</module>
 	</modules>
 	
