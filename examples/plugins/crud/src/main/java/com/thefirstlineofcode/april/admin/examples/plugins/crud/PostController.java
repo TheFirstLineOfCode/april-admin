@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.thefirstlineofcode.april.admin.core.crud.BasicCrudController;
+import com.thefirstlineofcode.april.admin.core.crud.IBasicCrudService;
+import com.thefirstlineofcode.april.admin.core.error.ValidationException;
 import com.thefirstlineofcode.april.admin.examples.plugins.data.accessor.Post;
 import com.thefirstlineofcode.april.admin.examples.plugins.data.accessor.PostRepository;
-import com.thefirstlineofcode.april.admin.framework.crud.BasicCrudController;
-import com.thefirstlineofcode.april.admin.framework.crud.IBasicCrudService;
-import com.thefirstlineofcode.april.admin.framework.error.ValidationException;
-import com.thefirstlineofcode.april.admin.framework.ui.BootMenuItem;
-import com.thefirstlineofcode.april.admin.framework.ui.reactadmin.Resource;
+import com.thefirstlineofcode.april.admin.react.admin.BootMenuItem;
+import com.thefirstlineofcode.april.admin.react.admin.Resource;
 
 @RestController
 @RequestMapping("/posts")

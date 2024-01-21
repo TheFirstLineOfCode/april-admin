@@ -1,7 +1,7 @@
 package com.thefirstlineofcode.april.admin.plugins.basic.auth;
 
-import com.thefirstlineofcode.april.admin.framework.auth.IAccount;
-import com.thefirstlineofcode.april.admin.framework.auth.IAccountManager;
+import com.thefirstlineofcode.april.admin.core.auth.IAccount;
+import com.thefirstlineofcode.april.admin.core.auth.IAccountManager;
 
 public class AccountManager implements IAccountManager {
 

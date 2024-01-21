@@ -34,7 +34,7 @@ import com.thefirstlineofcode.april.boot.config.IPluginPropertiesAware;
 @EnableTransactionManagement
 public class HSqlJpaDbaConfiguration implements ISpringConfiguration, IPluginPropertiesAware,
 			ApplicationContextAware {
-	private static final String PACKAGE_NAME_APRIL_FRAMEWORK = "com.thefirstlineofcode.april.framework";
+	private static final String PACKAGE_NAME_APRIL_CORE = "com.thefirstlineofcode.april.core";
 
 	private static final int DEFAULT_HSQL_PORT = 9001;
 	
@@ -97,7 +97,7 @@ public class HSqlJpaDbaConfiguration implements ISpringConfiguration, IPluginPro
 	private String[] getEntityScanPackages() {
 		List<String> packages = EntityScanPackages.get(appContext).getPackageNames();
 		if (packages == null || packages.size() == 0)
-			return new String[] {PACKAGE_NAME_APRIL_FRAMEWORK};
+			return new String[] {PACKAGE_NAME_APRIL_CORE};
 		
 		return packages.toArray(new String[packages.size()]);
 	}

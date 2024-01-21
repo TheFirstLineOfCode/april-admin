@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 
-import com.thefirstlineofcode.april.admin.framework.data.IIdProvider;
+import com.thefirstlineofcode.april.admin.core.data.IIdProvider;
 
 @Entity
 @Table(name = "POSTS",

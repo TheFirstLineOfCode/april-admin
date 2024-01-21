@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.thefirstlineofcode.april.admin.framework.ui.BootMenuItem;
-import com.thefirstlineofcode.april.admin.framework.ui.reactadmin.CustomView;
+import com.thefirstlineofcode.april.admin.react.admin.BootMenuItem;
+import com.thefirstlineofcode.april.admin.react.admin.CustomView;
 
 @RestController
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)

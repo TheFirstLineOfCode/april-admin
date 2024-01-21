@@ -148,7 +148,11 @@ public class OptionsTool {
 				new OptionRule().
 				setRange(Range.BOTH).
 				setDataType(DataType.STRING));
-		optionRules.put("deployed-plugins",
+		optionRules.put("deployed-system-plugins",
+				new OptionRule().
+				setRange(Range.BOTH).
+				setDataType(DataType.STRING));
+		optionRules.put("deployed-app-plugins",
 				new OptionRule().
 				setRange(Range.BOTH).
 				setDataType(DataType.STRING));
@@ -178,13 +182,15 @@ public class OptionsTool {
 	protected void printUsage() {
 		System.out.println("Usage: java april-admin-builder-${VERSION}.jar [OPTIONS] [Plugin-Names]");
 		System.out.println("OPTIONS:");
-		System.out.println("--help                                 Display help information.");
-		System.out.println("--packed-app-dir=PACKED_APP_DIR        Specify the path of packed application directory.");
-		System.out.println("--app-dev-dir=APP_DEV_DIR              Specify the path of application development directory.");
-		System.out.println("--plugins-dev-dirs=PLUGINS_DEV_DIRS    Specify the paths of plugins development directories, split by comma.");
-		System.out.println("--action=ACTION                        Specify the action packer to execute. Optional actions are 'pack', 'update-plugins' or 'update-dev-dependencies. Default is 'pack'.");
-		System.out.println("--clean-cache                          Clean packing cache.");
-		System.out.println("--offline                              Run maven in offline mode.");
+		System.out.println("--help                                   Display help information.");
+		System.out.println("--packed-app-dir=PACKED_APP_DIR          Specify the path of packed application directory.");
+		System.out.println("--app-dev-dir=APP_DEV_DIR                Specify the path of application development directory.");
+		System.out.println("--plugins-dev-dirs=PLUGINS_DEV_DIRS      Specify the paths of plugins development directories, split by comma.");
+		System.out.println("--deployed-system-plugins=SYSTEM_PLUGINS Specify deployed system plugins, split by comma.");
+		System.out.println("--plugins-dev-dirs=PLUGINS_DEV_DIRS      Specify deployed application plugins, split by comma.");
+		System.out.println("--action=ACTION                          Specify the action packer to execute. Optional actions are 'pack', 'update-plugins' or 'update-dev-dependencies. Default is 'pack'.");
+		System.out.println("--clean-cache                            Clean packing cache.");
+		System.out.println("--offline                                Run maven in offline mode.");
 	}
 
 }

@@ -9,12 +9,14 @@ public class Options extends OptionsBase {
 	private String appDevDir;
 	private String pluginsDevDirs;
 	private String[] pluginsDevDirsValue;
-	private String deployPlugins;
-	private String[] deployPluginsValue;
 	private String action;
 	private boolean cleanCache;
 	private ACTION actionValue;
 	private boolean offline;
+	private String deployedSystemPlugins;
+	private String[] deployedSystemPluginsValue;
+	private String deployedAppPlugins;
+	private String[] deployedAppPluginsValue;
 	
 	public enum ACTION {
 		PACK,
@@ -27,7 +29,8 @@ public class Options extends OptionsBase {
 		cleanCache = false;
 		offline = false;
 		pluginsDevDirsValue = new String[0];
-		deployPluginsValue = new String[0];
+		deployedSystemPluginsValue = new String[0];
+		deployedAppPluginsValue = new String[0];
 	}
 
 	public String getPackedAppDir() {
@@ -52,15 +55,20 @@ public class Options extends OptionsBase {
 
 	public void setPluginsDevDirs(String pluginsDevDirs) {
 		this.pluginsDevDirs = pluginsDevDirs;
-		
-		if (pluginsDevDirs == null || "".equals(pluginsDevDirs)) {			
-			pluginsDevDirsValue = new String[0];
+		pluginsDevDirsValue = splitToArray(pluginsDevDirs);
+	}
+
+	private String[] splitToArray(String string) {
+		if (string == null || "".equals(string)) {			
+			return new String[0];
 		} else {			
-			StringTokenizer st = new StringTokenizer(pluginsDevDirs, ",");
-			pluginsDevDirsValue = new String[st.countTokens()];
+			StringTokenizer st = new StringTokenizer(string, ",");
+			String[] value = new String[st.countTokens()];
 			
-			for (int i = 0; i < pluginsDevDirsValue.length; i++)
-				pluginsDevDirsValue[i] = st.nextToken();
+			for (int i = 0; i < value.length; i++)
+				value[i] = st.nextToken();
+			
+			return value;
 		}
 	}
 	
@@ -68,26 +76,32 @@ public class Options extends OptionsBase {
 		return pluginsDevDirsValue;
 	}
 
-	public String getDeployPlugins() {
-		return deployPlugins;
+	public String getDeployedSystemPlugins() {
+		return deployedSystemPlugins;
 	}
 	
-	public String[] getDeployPluginsValue() {
-		return deployPluginsValue;
+	public String[] getDeployedSystemPluginsValue() {
+		return deployedSystemPluginsValue;
 	}
 
-	public void setDeployPlugins(String deployPlugins) {
-		this.deployPlugins = deployPlugins;
+	public void setDeployedSystemPlugins(String deployedSystemPlugins) {
+		this.deployedSystemPlugins = deployedSystemPlugins;
 		
-		if (deployPlugins == null || "".equals(deployPlugins)) {			
-			deployPluginsValue = new String[0];
-		} else {			
-			StringTokenizer st = new StringTokenizer(deployPlugins, ",");
-			deployPluginsValue = new String[st.countTokens()];
-			
-			for (int i = 0; i < deployPluginsValue.length; i++)
-				deployPluginsValue[i] = st.nextToken();
-		}
+		deployedSystemPluginsValue = splitToArray(deployedSystemPlugins);
+	}
+	
+	public String getDeployedAppPlugins() {
+		return deployedAppPlugins;
+	}
+	
+	public String[] getDeployedAppPluginsValue() {
+		return deployedAppPluginsValue;
+	}
+	
+	public void setDeployedAppPlugins(String deployedAppPlugins) {
+		this.deployedAppPlugins = deployedAppPlugins;
+		
+		deployedAppPluginsValue = splitToArray(deployedAppPlugins);
 	}
 
 	public String getAction() {

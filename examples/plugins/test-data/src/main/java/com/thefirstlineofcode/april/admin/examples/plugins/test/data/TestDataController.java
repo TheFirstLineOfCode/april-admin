@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import com.thefirstlineofcode.april.admin.framework.ui.BootMenuItem;
-import com.thefirstlineofcode.april.admin.framework.ui.reactadmin.CustomView;
+import com.thefirstlineofcode.april.admin.react.admin.BootMenuItem;
+import com.thefirstlineofcode.april.admin.react.admin.CustomView;
 
 @RestController
 @RequestMapping("/test-data")

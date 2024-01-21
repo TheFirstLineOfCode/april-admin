@@ -5,7 +5,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.thefirstlineofcode.april.admin.framework.ui.StructuralMenu;
+import com.thefirstlineofcode.april.admin.react.admin.StructuralMenu;
 import com.thefirstlineofcode.april.boot.ISpringConfiguration;
 
 @Extension

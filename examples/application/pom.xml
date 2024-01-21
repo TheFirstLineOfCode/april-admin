@@ -30,7 +30,7 @@
 	<dependencies>
 			<dependency>
 				<groupId>com.thefirstlineofcode.april.admin</groupId>
-				<artifactId>april-admin-framework</artifactId>
+				<artifactId>april-admin-react-admin</artifactId>
 			</dependency>
 	</dependencies>
 </project>

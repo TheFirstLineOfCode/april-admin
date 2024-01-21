@@ -76,7 +76,8 @@
 	</build>
 
 	<modules>
-		<module>framework</module>
+		<module>core</module>
+		<module>react-admin</module>
 		<module>plugins</module>
 		<module>builder</module>
 		<module>examples</module>
@@ -117,11 +118,6 @@
 		<dependencies>
 			<!-- third party libraries -->
 			<dependency>
-				<groupId>org.pf4j</groupId>
-				<artifactId>pf4j</artifactId>
-				<version>3.6.0</version>
-			</dependency>
-			<dependency>
         			<groupId>io.swagger</groupId>
         			<artifactId>swagger-annotations</artifactId>
         			<version>1.5.18</version>
@@ -144,12 +140,12 @@
 			</dependency>
 			<dependency>
 				<groupId>com.thefirstlineofcode.april.admin</groupId>
-				<artifactId>april-admin-framework</artifactId>
+				<artifactId>april-admin-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.thefirstlineofcode.april.admin.plugins</groupId>
-				<artifactId>april-admin-plugins-react-admin</artifactId>
+				<groupId>com.thefirstlineofcode.april.admin</groupId>
+				<artifactId>april-admin-react-admin</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

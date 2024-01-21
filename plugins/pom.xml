@@ -19,7 +19,6 @@
 	<modules>
 		<module>hsql-jpa-dba</module>
 		<module>basic-auth</module>
-		<module>react-admin</module>
 	</modules>
 </project>
 

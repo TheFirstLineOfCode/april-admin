@@ -35,6 +35,6 @@ public class PluginDevProjectInfo extends DevProjectInfo {
 	
 	@Override
 	public String toString() {
-		return String.format("PluginDevProjectInfo[%s -- %s:%s -- %s:%s:%s]", getProjectDir(), getPluginId(), getPluginVersion(), getGroupId(), getArtifactId(), getVersion());
+		return String.format("PluginDevProjectInfo[%s:%s - %s - %s:%s:%s]", getPluginId(), getPluginVersion(), getProjectDir(), getGroupId(), getArtifactId(), getVersion());
 	}
 }

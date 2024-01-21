@@ -16,18 +16,15 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.thefirstlineofcode.april.admin.plugins</groupId>
-			<artifactId>april-admin-plugins-react-admin</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.thefirstlineofcode.april.admin.plugins</groupId>
 			<artifactId>april-admin-plugins-hsql-jpa-dba</artifactId>
 			<version>${project.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.thefirstlineofcode.april.admin.plugins</groupId>
 			<artifactId>april-admin-plugins-basic-auth</artifactId>
 			<version>${project.version}</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

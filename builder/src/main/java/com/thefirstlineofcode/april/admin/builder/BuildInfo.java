@@ -1,22 +1,23 @@
 package com.thefirstlineofcode.april.admin.builder;
 
 public class BuildInfo {
-	private DevProjectInfo appDevProjectInfo;
+	private AppDevProjectInfo appDevProjectInfo;
 	private PluginDevProjectInfo[] pluginDevProjectInfos;
-	private String[] deployedPlugins;
+	private String[] deployedSystemPlugins;
+	private String[] deployedAppPlugins;
 	
 	public BuildInfo() {}
 	
-	public BuildInfo(DevProjectInfo appProjectInfo, PluginDevProjectInfo[] pluginDevProjectInfos) {
+	public BuildInfo(AppDevProjectInfo appProjectInfo, PluginDevProjectInfo[] pluginDevProjectInfos) {
 		this.appDevProjectInfo = appProjectInfo;
 		this.pluginDevProjectInfos = pluginDevProjectInfos;
 	}
 
-	public DevProjectInfo getAppDevProjectInfo() {
+	public AppDevProjectInfo getAppDevProjectInfo() {
 		return appDevProjectInfo;
 	}
 
-	public void setAppDevProjectInfo(DevProjectInfo appProjectInfo) {
+	public void setAppDevProjectInfo(AppDevProjectInfo appProjectInfo) {
 		this.appDevProjectInfo = appProjectInfo;
 	}
 
@@ -28,11 +29,19 @@ public class BuildInfo {
 		this.pluginDevProjectInfos = pluginDevProjectInfos;
 	}
 
-	public String[] getDeployedPlugins() {
-		return deployedPlugins;
+	public String[] getDeployedSystemPlugins() {
+		return deployedSystemPlugins;
 	}
 
-	public void setDeployedPlugins(String[] deployedPlugins) {
-		this.deployedPlugins = deployedPlugins;
+	public void setDeployedSystemPlugins(String[] deployedSystemPlugins) {
+		this.deployedSystemPlugins = deployedSystemPlugins;
+	}
+	
+	public String[] getDeployedAppPlugins() {
+		return deployedAppPlugins;
+	}
+	
+	public void setDeployedAppPlugins(String[] deployedAppPlugins) {
+		this.deployedAppPlugins = deployedAppPlugins;
 	}
 }

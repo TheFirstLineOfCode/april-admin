@@ -7,10 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
+import com.thefirstlineofcode.april.admin.core.crud.jpa.LongTypeIdBasicCrudService;
+import com.thefirstlineofcode.april.admin.core.data.Filters;
 import com.thefirstlineofcode.april.admin.examples.plugins.data.accessor.User;
 import com.thefirstlineofcode.april.admin.examples.plugins.data.accessor.UserRepository;
-import com.thefirstlineofcode.april.admin.framework.crud.jpa.LongTypeIdBasicCrudService;
-import com.thefirstlineofcode.april.admin.framework.data.Filters;
 
 @Service
 public class UserService extends LongTypeIdBasicCrudService<User> implements IUserService {

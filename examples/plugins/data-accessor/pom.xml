@@ -19,7 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.thefirstlineofcode.april.admin</groupId>
-			<artifactId>april-admin-framework</artifactId>
+			<artifactId>april-admin-core</artifactId>
 		</dependency>
 	</dependencies>
 </project>

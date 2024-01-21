@@ -55,7 +55,7 @@ public class DevProjectInfo {
 	
 	@Override
 	public String toString() {
-		return String.format("DevProjectInfo[%s -- %s:%s:%s]", getProjectDir(), getGroupId(), getArtifactId(), getVersion());
+		return String.format("DevProjectInfo[%s - %s:%s:%s]", getProjectDir(), getGroupId(), getArtifactId(), getVersion());
 	}
 }
 
