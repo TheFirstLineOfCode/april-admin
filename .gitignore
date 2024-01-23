@@ -9,4 +9,5 @@ bin/
 *.ipr
 *.iws
 target/
+april-admin-builder-*
 
