@@ -1,29 +1,26 @@
 package com.thefirstlineofcode.april.admin.builder;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.ProcessBuilder.Redirect;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import org.pf4j.PluginDescriptor;
 import org.pf4j.PropertiesPluginDescriptorFinder;
+import org.pf4j.util.FileUtils;
 
 public abstract class AbstractBuildActor implements IBuildActor {
-	private static final String PATH_PREFIX_BOOT_INF_LIB = "BOOT-INF/lib/";
 	private static final String PROPERTIES_KEY_DEPENDENCIES = "dependencies";
 	private static final String EXPRESSION_PROJECT_GROUP_ID = "project.groupId";
 	private static final String EXPRESSION_PROJECT_ARTIFACT_ID = "project.artifactId";
@@ -38,7 +35,6 @@ public abstract class AbstractBuildActor implements IBuildActor {
 	private static final String DIRECTORY_NAME_CACHE = ".cache";
 	
 	protected Options options;
-	protected BuildInfo buildInfo;
 	
 	public AbstractBuildActor(Options options) {
 		this.options = options;
@@ -174,11 +170,33 @@ public abstract class AbstractBuildActor implements IBuildActor {
 	}
 	
 
+	private SystemPluginInfo[] getSystemPluginInfos() throws IOException {
+		URL systemPluginProperties = getClass().getResource("/system-plugins.properties");
+		Properties properties = new Properties();
+		properties.load(systemPluginProperties.openStream());
+		
+		List<SystemPluginInfo> systemPluginInfos = new ArrayList<>();
+		for (Object key : properties.keySet()) {
+			String pluginId = (String)key;
+			String libraryInfo = properties.getProperty(pluginId);
+			
+			StringTokenizer st = new StringTokenizer(libraryInfo, ":");
+			String groupId = st.nextToken();
+			String artifactId = st.nextToken();
+			String version = st.nextToken();
+			
+			systemPluginInfos.add(new SystemPluginInfo(pluginId, groupId, artifactId, version));
+		}
+		
+		return systemPluginInfos.toArray(new SystemPluginInfo[systemPluginInfos.size()]);
+	}
+
 	private BuildInfo loadCache() throws IOException {
 		System.out.println("Loading cache....");
 		
 		Path cacheDir = options.getHome().resolve(DIRECTORY_NAME_CACHE);
-		BuildInfo buildInfo = new BuildInfo(loadAppDevProjectInfoFromCache(cacheDir),
+		BuildInfo buildInfo = new BuildInfo(getSystemPluginInfos(),
+				loadAppDevProjectInfoFromCache(cacheDir),
 				loadPluginDevProjectInfosFromCache(cacheDir));
 		
 		return buildInfo;
@@ -270,13 +288,9 @@ public abstract class AbstractBuildActor implements IBuildActor {
 		if (!Files.exists(appDevDir))
 			throw new RuntimeException(String.format("Application development directory '%s' not existed.", sAppDevDir));
 		
-		BuildInfo buildInfo = new BuildInfo();
-		buildInfo.setAppDevProjectInfo(readAppDevProjectInfo(appDevDir.toFile()));
-		buildInfo.setPluginDevProjectInfos(getPluginDevProjectInfos(options.getPluginsDevDirsValue()));
-		
-		buildInfo.setDeployedSystemPlugins(options.getDeployedSystemPluginsValue());
-		buildInfo.setDeployedAppPlugins(options.getDeployedAppPluginsValue());
-		
+		BuildInfo buildInfo = new BuildInfo(getSystemPluginInfos(),
+				readAppDevProjectInfo(appDevDir.toFile()),
+				getPluginDevProjectInfos(options.getPluginsDevDirsValue()));		
 		writeCache(buildInfo.getAppDevProjectInfo(), buildInfo.getPluginDevProjectInfos());
 		
 		return buildInfo;
@@ -290,40 +304,31 @@ public abstract class AbstractBuildActor implements IBuildActor {
 		if (!Files.exists(devProjectInfo.getArtifact()))
 			runMvn(appDevProjectDir, "clean", "install");
 		
-		List<String> dependencies = new ArrayList<>();
-		Path artifact = devProjectInfo.getArtifact();
-		ZipInputStream zis = null;
-		try {
-			zis = new ZipInputStream(new BufferedInputStream(new FileInputStream(artifact.toFile())));
-			ZipEntry entry = null;
-			while ((entry = zis.getNextEntry()) != null) {
-				String entryName = entry.getName();
-				
-				if (entryName.indexOf(PATH_PREFIX_BOOT_INF_LIB) != -1 && entryName.endsWith(".jar")) {
-					dependencies.add(entryName.substring(PATH_PREFIX_BOOT_INF_LIB.length()));
-				}
-			}
-		} catch (IOException e) {
-			throw new RuntimeException("Failed to read jar entries.", e);
-		} finally {
-			if (zis != null)
-				try {
-					zis.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		}
-		
 		AppDevProjectInfo appDevProjectInfo = new AppDevProjectInfo(
 				devProjectInfo.getProjectDir(),
 				devProjectInfo.getGroupId(),
 				devProjectInfo.getArtifactId(),
 				devProjectInfo.getVersion());
-		appDevProjectInfo.setDependencies(dependencies.toArray(new String[dependencies.size()]));
+		appDevProjectInfo.setDependencies(getDependencies(appDevProjectInfo));
 		
 		System.out.println(String.format("Application development project info has read. Info: %s.", appDevProjectInfo));
 		
 		return appDevProjectInfo;
+	}
+	
+	protected String[] getDependencies(DevProjectInfo devProjectInfo) {
+		Path projectDir = Path.of(devProjectInfo.getProjectDir());
+		
+		Path dependencyDir = projectDir.resolve("target/dependency");
+		if (!Files.exists(dependencyDir))
+			runMvn(projectDir.toFile(), "dependency:copy-dependencies");
+		
+		List<String> dependencies = new ArrayList<>();
+		for (File dependency : dependencyDir.toFile().listFiles()) {
+			dependencies.add(dependency.getName());
+		}
+		
+		return dependencies.toArray(new String[dependencies.size()]);
 	}
 
 	private void writeCache(AppDevProjectInfo appDevProjectInfo, PluginDevProjectInfo[] pluginDevProjectInfos) throws IOException {
@@ -402,7 +407,7 @@ public abstract class AbstractBuildActor implements IBuildActor {
 		if (!Files.isDirectory(pluginsDevDir))
 			throw new IllegalArgumentException(String.format("Configured plugins development directory '%s' isn't a directory.", pluginsDevDir.toFile().getAbsolutePath()));
 		
-		System.out.println("Reading plugin development project infos....");
+		System.out.println(String.format("Reading plugin development project infos from plugins development path '%s'....", sPluginsDevDir));
 		List<PluginDevProjectInfo> pluginDevProjectInfos = new ArrayList<>();
 		for (String sChild : pluginsDevDir.toFile().list()) {
 			Path child = pluginsDevDir.resolve(sChild);
@@ -508,6 +513,15 @@ public abstract class AbstractBuildActor implements IBuildActor {
 
 	private String readPomGroupId(File projectDir) {
 		return readPomExpression(projectDir, EXPRESSION_PROJECT_GROUP_ID);
+	}
+	
+	protected boolean isPluginJar(File jar) {
+		try {
+			Path pluingProperties = FileUtils.getPath(jar.toPath(), "plugin.properties");
+			return Files.exists(pluingProperties);
+		} catch (IOException e) {
+			return false;
+		}
 	}
 	
 	protected abstract void doBuild(BuildInfo buildInfo) throws Exception;

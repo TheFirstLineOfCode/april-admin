@@ -1,6 +1,7 @@
 package com.thefirstlineofcode.april.admin.builder;
 
 public class BuildInfo {
+	private SystemPluginInfo[] systemPluginInfos;
 	private AppDevProjectInfo appDevProjectInfo;
 	private PluginDevProjectInfo[] pluginDevProjectInfos;
 	private String[] deployedSystemPlugins;
@@ -8,7 +9,9 @@ public class BuildInfo {
 	
 	public BuildInfo() {}
 	
-	public BuildInfo(AppDevProjectInfo appProjectInfo, PluginDevProjectInfo[] pluginDevProjectInfos) {
+	public BuildInfo(SystemPluginInfo[] systemPluginInfos, AppDevProjectInfo appProjectInfo,
+			PluginDevProjectInfo[] pluginDevProjectInfos) {
+		this.systemPluginInfos = systemPluginInfos;
 		this.appDevProjectInfo = appProjectInfo;
 		this.pluginDevProjectInfos = pluginDevProjectInfos;
 	}
@@ -43,5 +46,13 @@ public class BuildInfo {
 	
 	public void setDeployedAppPlugins(String[] deployedAppPlugins) {
 		this.deployedAppPlugins = deployedAppPlugins;
+	}
+
+	public SystemPluginInfo[] getSystemPluginInfos() {
+		return systemPluginInfos;
+	}
+
+	public void setSystemPluginInfos(SystemPluginInfo[] systemPluginInfos) {
+		this.systemPluginInfos = systemPluginInfos;
 	}
 }
