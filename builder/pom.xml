@@ -3,11 +3,17 @@
 	xsi:thefirstlineofcode="http://maven.apache.org/POM/4.0.0
 		http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.thefirstlineofcode.april</groupId>
+		<artifactId>april-admin</artifactId>
+		<version>1.0.0-ALPHA1</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 	
 	<groupId>com.thefirstlineofcode.april.admin</groupId>
 	<artifactId>april-admin-builder</artifactId>
 	<name>April admin builder</name>
-	<version>1.0.0-ALPHA1</version>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

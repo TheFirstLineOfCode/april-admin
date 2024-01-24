@@ -62,9 +62,9 @@ public class Packer extends AbstractBuildActor {
 			Path packDir = options.getHome().resolve(DIRECTORY_NAME_PACK);
 			for (File file : packDir.toFile().listFiles()) {
 				if (file.isFile() && file.getName().endsWith(".jar")) {					
-					copyAppJarToZip(zos, appName, file);
+					writeAppJarToZip(zos, appName, file);
 				} else if (file.isDirectory() && DIRECTORY_NAME_PLUGINS.equals(file.getName())) {
-					copyPluginsToZip(zos, appName, file);
+					writePluginsToZip(zos, appName, file);
 				} else {
 					throw new RuntimeException(String.format("Unknown pack file: %s.", file.getName()));
 				}
@@ -84,7 +84,7 @@ public class Packer extends AbstractBuildActor {
 		}
 	}
 
-	private void copyPluginsToZip(ZipOutputStream zos, String appName, File pluginsDir) throws IOException {
+	private void writePluginsToZip(ZipOutputStream zos, String appName, File pluginsDir) throws IOException {
 		for (File file : pluginsDir.listFiles()) {
 			if (file.isFile() && file.getName().endsWith(".jar")) {
 				writeFileToZip(zos, String.format("%s/%s/%s", appName, DIRECTORY_NAME_PLUGINS, file.getName()), file);
@@ -106,7 +106,7 @@ public class Packer extends AbstractBuildActor {
 		return String.format("%s/%s/%s/%s", appName, DIRECTORY_NAME_PLUGINS, pluginDependenciesDir.getName(), dependency.getName());
 	}
 
-	private void copyAppJarToZip(ZipOutputStream zos, String appName, File appJar) throws IOException {
+	private void writeAppJarToZip(ZipOutputStream zos, String appName, File appJar) throws IOException {
 		writeFileToZip(zos, String.format("%s/%s", appName, appJar.getName()), appJar);
 	}
 	

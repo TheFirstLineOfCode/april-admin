@@ -1,14 +1,13 @@
 package com.thefirstlineofcode.april.admin.examples.application;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 
-import com.thefirstlineofcode.april.boot.config.AprilApplicationProperties;
+import com.thefirstlineofcode.april.boot.config.ApplicationProperties;
+import com.thefirstlineofcode.april.boot.config.IApplicationPropertiesAware;
 
-public class ExamplesApplictionRunner implements ApplicationRunner {
-	@Autowired
-	private AprilApplicationProperties applicationProperties;
+public class ExamplesApplictionRunner implements ApplicationRunner, IApplicationPropertiesAware {
+	private ApplicationProperties applicationProperties;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -20,5 +19,10 @@ public class ExamplesApplictionRunner implements ApplicationRunner {
 				System.out.println(String.format("Disabled plugin: %s.", disabledPlugin));
 			}
 		}
+	}
+
+	@Override
+	public void setApplicationProperties(ApplicationProperties applicationProperties) {
+		this.applicationProperties = applicationProperties;
 	}
 }

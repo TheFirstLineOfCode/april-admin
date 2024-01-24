@@ -27,5 +27,23 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>com.thefirstlineofcode.releases</id>
+			<name>TheFirstLineOfCode Repository - Releases</name>
+			<url>http://120.25.166.188:9090/repository/maven-releases/</url>
+		</repository>
+		<repository>
+                        <id>jcenter</id>
+                        <name>JCenter Repository</name>
+                        <url>https://jcenter.bintray.com/</url>
+                </repository>
+                <repository>
+                        <id>central</id>
+                        <name>Central Repository</name>
+                        <url>https://repo1.maven.org/maven2</url>
+                </repository>
+	</repositories>
 </project>
 
