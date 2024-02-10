@@ -14,7 +14,8 @@ import com.thefirstlineofcode.april.admin.react.admin.CustomView;
 
 @RestController
 @RequestMapping("/test-data")
-@CustomView(name = "test-data", viewName = "TestDataView", menuItem = @BootMenuItem(parent = "tools", label = "ca.title.testData"))
+@CustomView(name = "test-data", viewName = "TestDataView", menuItem = @BootMenuItem(parent = "tools",
+		label = "application.title.testData"))
 public class TestDataController {
 	@Autowired
 	private ITestDataService testDataService;

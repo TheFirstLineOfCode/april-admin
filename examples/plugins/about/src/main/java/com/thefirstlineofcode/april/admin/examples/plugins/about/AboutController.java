@@ -12,7 +12,7 @@ import com.thefirstlineofcode.april.admin.react.admin.CustomView;
 @RestController
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 @CustomView(name = "about", viewName = "AboutView",
-	menuItem = @BootMenuItem(parent = "help", label = "ca.title.about", priority = BootMenuItem.PRIORITY_LOW))
+	menuItem = @BootMenuItem(parent = "help", label = "application.title.about", priority = BootMenuItem.PRIORITY_LOW))
 public class AboutController {
 	@Autowired
 	private AboutService aboutService;

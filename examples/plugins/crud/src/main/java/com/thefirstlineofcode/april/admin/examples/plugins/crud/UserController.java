@@ -12,7 +12,8 @@ import com.thefirstlineofcode.april.admin.react.admin.Resource;
 
 @RestController
 @RequestMapping("/users")
-@Resource(name = "users", recordRepresentation = "name", listViewName = "UserListView", menuItem = @BootMenuItem(label = "ca.title.users", priority = BootMenuItem.PRIORITY_MEDIUM + 500))
+@Resource(name = "users", recordRepresentation = "name", listViewName = "UserListView",
+	menuItem = @BootMenuItem(label = "application.title.users", priority = BootMenuItem.PRIORITY_MEDIUM + 500))
 public class UserController extends BasicCrudController<Long, User> {
 	@Autowired
 	private UserService userService;

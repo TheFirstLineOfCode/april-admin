@@ -19,7 +19,7 @@ import com.thefirstlineofcode.april.admin.react.admin.Resource;
 	showViewName = "PostShowView",
 	editViewName =  "PostEditView",
 	createViewName = "PostCreateView",
-	menuItem = @BootMenuItem(label = "ca.title.posts", priority = BootMenuItem.PRIORITY_MEDIUM + 400))
+	menuItem = @BootMenuItem(label = "application.title.posts", priority = BootMenuItem.PRIORITY_MEDIUM + 400))
 public class PostController extends BasicCrudController<Long, Post> {
 	@Autowired
 	private PostService postService;

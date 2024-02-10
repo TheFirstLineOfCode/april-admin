@@ -10,8 +10,8 @@ import com.thefirstlineofcode.april.boot.ISpringConfiguration;
 
 @Extension
 @Configuration
-@StructuralMenu(name = "tools", label = "ca.menu.tools", priority = StructuralMenu.PRIORITY_MEDIUM)
-@StructuralMenu(name = "help", label = "ca.menu.help", priority = StructuralMenu.PRIORITY_LOW)
+@StructuralMenu(name = "tools", label = "application.menu.tools", priority = StructuralMenu.PRIORITY_MEDIUM)
+@StructuralMenu(name = "help", label = "application.menu.help", priority = StructuralMenu.PRIORITY_LOW)
 public class ExampleApplicaionConfiguration implements ISpringConfiguration {
 	@Bean
 	public ApplicationRunner examplesApplicationRunner() {
